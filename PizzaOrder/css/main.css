@@ -1,0 +1,346 @@
+body {
+	background-image: url("http://www.glumber.com/designgallery/images/bar-tops/IMG_3649.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#blackScreen {
+	display: none;
+	z-index: 2;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba( 0, 0, 0, 0.4 );
+}
+
+#pCartLabel {
+	padding-left: 20px;
+}
+
+#checkoutCart {
+	display: none;
+	z-index: 3;
+	overflow: hidden;
+	position: fixed;
+	top: 20%;
+	left: 30%;
+	width: 40%;
+	height: 60%;
+	border-radius: 20px;
+	border-style: solid;
+	border-color: brown;
+	border-width: 1px;
+	background-color: skyblue;
+	font-size: 20px;
+	font-family: "Arial";
+}
+
+#pCart {
+	overflow-y: scroll;
+	position: absolute;
+	top: 50px;
+	left: 5%;
+	width: 90%;
+	height: 60%;
+	background-color: white;
+}
+
+.pListItem {
+	background-color: lightgreen;
+	border-radius: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-style: solid;
+	border-color: brown;
+	border-width: 1px;
+}
+
+#placeOrderBtn {
+	position: absolute;
+	display: inline-block;
+	left: 40%;
+	bottom: 10px;
+	text-align: center;
+	border-radius: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: gold;
+}
+
+#placeOrderBtn:hover {
+	cursor: pointer;
+}
+
+#orderMessage {
+	padding-right: 20px;
+}
+
+#onSuccessDiv {
+	display: none;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+	background-color: lightgreen;
+}
+
+#pizzaPlatform {
+	position: fixed;
+	right: 0px;
+	top: 100px;
+	width: 600px;
+	height: 500px;
+}
+
+#pizzaPlatform div {
+	position: absolute;
+}
+
+#pPaddle {
+	background-image: url("../images/circlePaddle.png");
+	background-size: 130% 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}
+
+#pToppings {
+	top: 80px;
+	left: 200px;
+	width: 300px;
+	height: 300px;
+	background-color: #ffbd88;
+}
+
+#topGUI {
+	position: fixed;
+	right: 10px;
+	top: 20px;
+}
+
+#topGUI div {
+	display: inline-block;
+}
+
+#price {
+	background-color: lightgreen;
+}
+
+#addToCart {
+	background-color: gold;
+}
+
+#addToCart:hover {
+	cursor: pointer;
+}
+
+#checkout {
+	position: fixed;
+	background-color: gold;
+	top: 20px;
+	left: 46%;
+}
+
+#pizzaCounter {
+	position: absolute;
+	bottom: -25px;
+	right:-25px;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: red;
+	color: white;
+	border-radius: 20px;
+	border-color: white;
+	border-style: solid;
+	border-width: 2px;
+}
+
+#checkout:hover {
+	cursor: pointer;
+}
+
+.guiBtn {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 25px;
+	border-radius: 10px;
+}
+
+#customDiv {
+	width: 300px;
+	font-size: 20px;
+	font-family: "Arial";
+}
+
+
+#customLabel {
+	display: inline;
+	font-size: 30px;
+}
+
+.customBtn {
+	width: 100%;
+	background-color: silver;
+	border-radius: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: white;
+}
+
+.customBtn p {
+	display: inline;
+	padding-left: 20px;
+}
+
+.customBtn:hover {
+	cursor: pointer;
+}
+
+.customContent {
+	overflow: hidden;
+	display: none;
+}
+
+#pStyle {
+	background-color: skyblue;
+	border-radius: 10px;
+}
+/* Pizza size */
+
+#pSize {
+	width: 100%;
+	font-size: 20px
+}
+
+.slider {
+	text-align: center;
+}
+
+.sliderLabel {
+	float: right;
+	padding-right: 10px;
+}
+
+.styleOption {
+	width: 100%;
+	text-align: center;
+}
+
+.styleOption input {
+	outline: none;
+}
+
+/* Pizza shape */
+
+.pShape {
+	width: 50px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+
+/* Item Option */
+
+.itemImage {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	vertical-align: middle;
+	border-radius: 10px;
+}
+
+.itemOption {
+	width: 100%;
+	background-color: skyblue;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
+}
+
+.itemOption:hover {
+	cursor: pointer;
+}
+
+.itemOption p {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.vFriendly {
+	float: right;
+	width: 50px;
+	height: 50px;
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+#vFriendlyDetails {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	font-size: 15px;
+}
+
+#vFriendlyDetails p {
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+}
+
+#vFriendlyImage {
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+}
+
+.btnImage {
+	float: left;
+	width: 35px;
+	height: 35px;
+	padding-left: 20px;
+}
+.arrow {
+	float: right;
+	width: 20px;
+	height: 20px;
+	padding-right: 10px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+#status {
+	color: white;
+}
