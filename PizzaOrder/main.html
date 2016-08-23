@@ -1,0 +1,412 @@
+<html>
+<head>
+	<title>Jameson's Jammin' Pizza Joint</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="shortcut icon" href='images/vFriendly.png'>
+</head>
+<body>
+
+	<div id='pizzaPlatform'>
+		<div id='pToppings'></div>
+		<div id='pPaddle'></div>
+	</div>
+
+	<div id='topGUI'>
+		<div id='price' class='guiBtn'></div>
+		<div id='addToCart' class='guiBtn' onclick='addToCart()'>Add To Cart</div>
+	</div>
+
+	<div id='checkout' class='guiBtn' onclick='checkout()'>
+		<div>Checkout</div>
+		<div id='pizzaCounter'></div>
+	</div>
+
+	<div id='blackScreen' onclick='hideElement("checkoutMenu")'></div>
+
+	<div id='checkoutCart'>
+		<p id='pCartLabel'>Cart:</p>
+		<div id='pCart'></div>
+		<div id='placeOrderBtn' onclick='completeOrder()'>Place Order</div>
+
+		<div id='onSuccessDiv'>
+			<div id='orderMessage'>
+				Thank you! Your order will arrive in
+				<span id='pOrderTime'>XXX</span>
+				minutes at 
+			</div>
+			<!-- Change to custom address eventually -->
+			<div id='onSuccessAddress'>409 Christopher Street, Warrensburg MO</div>
+		</div>
+	</div>
+
+	<div id='vFriendlyDetails'>
+		<p>Vegan Friendly ( No animal products, including eggs and dairy )</p>
+		<img id='vFriendlyImage' draggable='false' src='images/vFriendly.png'>
+	</div>
+
+	<div id='customDiv'>
+		<!--
+		<p id='customLabel'>Custom</p>
+		-->
+
+		<!-- STYLE -->
+		<div id='pStyleBtn' class='customBtn' onclick='toggleView("pStyle")'>
+			<img src='images/style.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Style</p>
+			<img id='pStyle-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+		<div id='pStyle' class='customContent'>
+
+			<table id='pSize' class='sliderTable'>
+				<tr>
+					<td class='noselect'>Size:</td>
+					<td><input class='slider' type="range" oninput='setSize(this.value)'value="12" min="9" max="21" step="3"></td>
+					<td id='pSizeLabel'class='sliderLabel noselect'>12 in.</td>
+				</tr>
+				<tr>
+					<td class='noselect'>Slices:</td>
+					<td><input class='slider' type="range" oninput='setSlices(this.value)'value="8" min="2" max="12" step="2"></td>
+					<td id='pSlicesLabel'class='sliderLabel noselect'>8</td>
+				</tr>
+			</table>
+
+			<div id='pShape' class='styleOption'>
+				<input id='circle' type='image' class='pShape' draggable='false' onclick='setUniqueItem("shape", "circle")' src='images/circle.png'>
+				<input id='square' type='image' class='pShape' draggable='false' onclick='setUniqueItem("shape", "square")' src='images/square.png'>
+				<input id='heart' type='image' class='pShape' draggable='false' onclick='setUniqueItem("shape", "heart")' src='images/heart.png'>
+				<input id='batman' type='image' class='pShape' draggable='false' onclick='setUniqueItem("shape", "batman")' src='images/batman.png'>
+			</div>
+			<div id='pSliceStyle' class='styleOption'>
+				<input id='radial' type='image' class='pShape' draggable='false' onclick='setUniqueItem("sliceType", "radial")' src='images/radial.png'>
+				<input id='grid' type='image' class='pShape' draggable='false' onclick='setUniqueItem("sliceType", "grid")' src='images/grid.png'>
+			</div>
+		</div>
+
+		<!-- DOUGH -->
+		<div id='pDoughBtn' class='customBtn' onclick='toggleView("pDough")'>
+			<img src='images/dough.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Dough</p>
+			<img id='pDough-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+		<div id='pDough' class='customContent'>
+			<div id='pita' class='itemOption doughOption' onclick='setUniqueItem("dough", "pita")'>
+				<img class='itemImage' src='images/food/pita.png'>
+				<p>Pita Bread</p>
+				<img class='vFriendly' src='images/vFriendly.png'>
+			</div>
+
+			<div id='gFree' class='itemOption doughOption' onclick='setUniqueItem("dough", "gFree")'>
+				<img class='itemImage' src='images/food/gFree.png'>
+				<p>Gluten Free</p>
+				<img class='vFriendly' src='images/vFriendly.png'>
+			</div>
+
+			<div id='vegan' class='itemOption doughOption' onclick='setUniqueItem("dough", "vegan")'>
+				<img class='itemImage' src='images/food/vegan.png'>
+				<p>Vegan</p>
+				<img class='vFriendly' src='images/vFriendly.png'>
+			</div>
+
+			<div id='regular' class='itemOption doughOption' onclick='setUniqueItem("dough", "regular")'>
+				<img class='itemImage' src='images/food/regularDough.png'>
+				<p>Regular</p>
+			</div>
+		</div>
+
+		<!-- SAUCE -->
+		<div id='pSauceBtn' class='customBtn' onclick='toggleView("pSauce")'>
+			<img src='images/sauce.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Sauce</p>
+			<img id='pSauce-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+		<div id='pSauce' class='customContent'>
+
+			<div id='pesto' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "pesto")'>
+				<img class='itemImage' src='images/food/pesto.png'>
+				<p>Pesto</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='salsa' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "salsa")'>
+				<img class='itemImage' src='images/food/salsa.png'>
+				<p>Salsa</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='bbq' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "bbq")'>
+				<img class='itemImage' src='images/food/bbq.png'>
+				<p>BBQ</p>
+			</div>
+
+			<div id='ranchy' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "ranchy")'>
+				<img class='itemImage' src='images/food/ranchy.png'>
+				<p>Ranchy</p>
+			</div>
+
+			<div id='romesco' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "romesco")'>
+				<img class='itemImage' src='images/food/romesco.png'>
+				<p>Romesco</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='sunDried' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "sunDried")'>
+				<img class='itemImage' src='images/food/sunDried.png'>
+				<p>Sun-Dried Tomato</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='nutella' class='itemOption sauceOption' onclick='setUniqueItem("sauce", "nutella")'>
+				<img class='itemImage' src='images/food/nutella.png'>
+				<p>Nutella</p>
+			</div>
+
+		</div>
+
+		<!-- CHEESE -->
+		<div id='pCheeseBtn' class='customBtn' onclick='toggleView("pCheese")'>
+			<img src='images/cheese.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Cheese</p>
+			<img id='pCheese-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+
+		<div id='pCheese' class='customContent'>
+
+			<div id='provolone' class='itemOption' onclick='setItem("cheese", "provolone")'>
+				<img class='itemImage' draggable='fasle' src='images/food/provolone.png'>
+				<p>Provolone</p>
+			</div>
+			
+			<div id='cheddar' class='itemOption' onclick='setItem("cheese", "cheddar")'>
+				<img class='itemImage' draggable='fasle' src='images/food/cheddar.png'>
+				<p>Cheddar</p>
+			</div>
+			
+			<div id='colby' class='itemOption' onclick='setItem("cheese", "colby")'>
+				<img class='itemImage' draggable='fasle' src='images/food/colby.png'>
+				<p>Colby</p>
+			</div>
+			
+			<div id='mozzarella' class='itemOption' onclick='setItem("cheese", "mozzarella")'>
+				<img class='itemImage' draggable='fasle' src='images/food/mozzarella.png'>
+				<p>Mozzarella</p>
+			</div>
+			
+			<div id='creamCheese' class='itemOption' onclick='setItem("cheese", "creamCheese")'>
+				<img class='itemImage' draggable='fasle' src='images/food/creamCheese.png'>
+				<p>Cream Cheese</p>
+			</div>
+			
+			<div id='vMozzarella' class='itemOption' onclick='setItem("cheese", "vMozzarella")'>
+				<img class='itemImage' draggable='fasle' src='images/food/vMozzarella.png'>
+				<p>V-Mozzarella</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='vCreamCheese' class='itemOption' onclick='setItem("cheese", "vCreamCheese")'>
+				<img class='itemImage' draggable='fasle' src='images/food/vCreamCheese.png'>
+				<p>V-Cream Cheese</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='cashewCheese' class='itemOption' onclick='setItem("cheese", "cashewCheese")'>
+				<img class='itemImage' draggable='fasle' src='images/food/cashewCheese.png'>
+				<p>Cashew Cheese</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+		</div>
+
+		<!-- MEATS -->
+		<div id='pMeatsBtn' class='customBtn' onclick='toggleView("pMeats")'>
+			<img src='images/meats.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Meats</p>
+			<img id='pMeats-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+
+		<div id='pMeats' class='customContent'>
+
+			<div id='pepperoni' class='itemOption' onclick='setItem("meats", "pepperoni")'>
+				<img class='itemImage' draggable='false' src='images/food/pepperoni.png'>
+				<p>Pepperoni</p>
+			</div>
+			
+			<div id='bacon' class='itemOption' onclick='setItem("meats", "bacon")'>
+				<img class='itemImage' draggable='false' src='images/food/bacon.png'>
+				<p>Bacon</p>
+			</div>
+			
+			<div id='chicken' class='itemOption' onclick='setItem("meats", "chicken")'>
+				<img class='itemImage' draggable='false' src='images/food/chicken.png'>
+				<p>Chicken</p>
+			</div>
+			
+			<div id='beef' class='itemOption' onclick='setItem("meats", "beef")'>
+				<img class='itemImage' draggable='false' src='images/food/beef.png'>
+				<p>Beef</p>
+			</div>
+			
+			<div id='sausage' class='itemOption' onclick='setItem("meats", "sausage")'>
+				<img class='itemImage' draggable='false' src='images/food/sausage.png'>
+				<p>Sausage</p>
+			</div>
+			
+			<div id='turkey' class='itemOption' onclick='setItem("meats", "turkey")'>
+				<img class='itemImage' draggable='false' src='images/food/turkey.png'>
+				<p>Turkey</p>
+			</div>
+			
+			<div id='tofurkey' class='itemOption' onclick='setItem("meats", "tofurkey")'>
+				<img class='itemImage' draggable='false' src='images/food/tofurkey.png'>
+				<p>Tofurkey</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='tofu' class='itemOption' onclick='setItem("meats", "tofu")'>
+				<img class='itemImage' draggable='false' src='images/food/tofu.png'>
+				<p>Tofu</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='vBeef' class='itemOption' onclick='setItem("meats", "vBeef")'>
+				<img class='itemImage' draggable='false' src='images/food/vBeef.png'>
+				<p>V-Beef</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='vBacon' class='itemOption' onclick='setItem("meats", "vBacon")'>
+				<img class='itemImage' draggable='false' src='images/food/vBacon.png'>
+				<p>V-Bacon</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='vChicken' class='itemOption' onclick='setItem("meats", "vChicken")'>
+				<img class='itemImage' draggable='false' src='images/food/vChicken.png'>
+				<p>V-Chicken</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+		</div>
+
+		<!-- VEGETABLES -->
+		<div id='pVegetablesBtn' class='customBtn' onclick='toggleView("pVegetables")'>
+			<img src='images/vegetables.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Vegetables</p>
+			<img id='pVegetables-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+		<div id='pVegetables' class='customContent'>
+			
+			<div id='spinach' class='itemOption' onclick='setItem("vegetables", "spinach")'>
+				<img class='itemImage' draggable='false' src='images/food/spinach.png'>
+				<p>Spinach</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+
+			<div id='mushrooms' class='itemOption' onclick='setItem("vegetables", "mushrooms")'>
+				<img class='itemImage' draggable='false' src='images/food/mushrooms.png'>
+				<p>Mushrooms</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+
+			<div id='artichoke' class='itemOption' onclick='setItem("vegetables", "artichoke")'>
+				<img class='itemImage' draggable='false' src='images/food/artichoke.png'>
+				<p>Artichoke</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+
+			<div id='cucumbers' class='itemOption' onclick='setItem("vegetables", "cucumbers")'>
+				<img class='itemImage' draggable='false' src='images/food/cucumbers.png'>
+				<p>Cucumbers</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+
+			<div id='onions' class='itemOption' onclick='setItem("vegetables", "onions")'>
+				<img class='itemImage' draggable='false' src='images/food/onions.png'>
+				<p>Onions</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+
+			<div id='squanchy' class='itemOption' onclick='setItem("vegetables", "squanchy")'>
+				<img class='itemImage' draggable='false' src='images/food/squanchy.png'>
+				<p>Squanchy</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+		</div>
+
+		<!-- FRUITS -->
+		<div id='pFruitsBtn' class='customBtn' onclick='toggleView("pFruits")'>
+			<img src='images/fruits.png' draggable='false' class='btnImage noselect'>
+			<p class='noselect'>Fruits</p>
+			<img id='pFruits-arrow' src='images/rightArrow.png' draggable='false' class='arrow noselect'>
+		</div>
+		<div id='pFruits' class='customContent'>
+			
+			<div id='apples' class='itemOption' onclick='setItem("fruits", "apples")'>
+				<img class='itemImage' draggable='false' src='images/food/apples.png'>
+				<p>Apples</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='pineapples' class='itemOption' onclick='setItem("fruits", "pineapples")'>
+				<img class='itemImage' draggable='false' src='images/food/pineapples.png'>
+				<p>Pineapples</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='grapes' class='itemOption' onclick='setItem("fruits", "grapes")'>
+				<img class='itemImage' draggable='false' src='images/food/grapes.png'>
+				<p>Grapes</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='bananas' class='itemOption' onclick='setItem("fruits", "bananas")'>
+				<img class='itemImage' draggable='false' src='images/food/bananas.png'>
+				<p>Bananas</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+			
+			<div id='oranges' class='itemOption' onclick='setItem("fruits", "oranges")'>
+				<img class='itemImage' draggable='false' src='images/food/oranges.png'>
+				<p>Oranges</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			
+			<div id='mangoes' class='itemOption' onclick='setItem("fruits", "mangoes")'>
+				<img class='itemImage' draggable='false' src='images/food/mangoes.png'>
+				<p>Mangoes</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			
+			<div id='strawberries' class='itemOption' onclick='setItem("fruits", "strawberries")'>
+				<img class='itemImage' draggable='false' src='images/food/strawberries.png'>
+				<p>Strawberries</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+			<div id='tomatoes' class='itemOption' onclick='setItem("fruits", "tomatoes")'>
+				<img class='itemImage' draggable='false' src='images/food/tomatoes.png'>
+				<p>Tomatoes</p>
+				<img class='vFriendly' draggable='false' src='images/vFriendly.png'>
+			</div>
+
+		</div>
+	</div>
+
+	<div id='bottomGUI'>
+		<p id='priceLabel' class='bottomGUI'></p>
+		<p id='addToCartBtn' class='bottomGUI'></p>
+		<p id='checkoutBtn' class='bottomGUI'></p>
+	</div>
+	<div id="status"></div>
+
+	<script src='js/data/data.js'></script>
+	<script src='js/document.js'></script>
+	<script src='js/controls.js'></script>
+	<script src='js/main.js'></script>
+</body>
+</html>
