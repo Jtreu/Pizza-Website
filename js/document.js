@@ -99,6 +99,7 @@ doc["tomatoes"] = document.getElementById( "tomatoes" );
 doc["pFruits"] = document.getElementById( "pFruits" );
 doc["pFruits-arrow"] = document.getElementById( "pFruits-arrow" );
 doc["apples"] = document.getElementById( "apples" );
+// Why people like to ruin their cheese pizza with pineapples, I will never know
 doc["pineapples"] = document.getElementById( "pineapples" );
 doc["grapes"] = document.getElementById( "grapes" );
 doc["bananas"] = document.getElementById( "bananas" );
