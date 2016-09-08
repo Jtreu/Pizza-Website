@@ -1,4 +1,4 @@
-
+/* variables */
 var canAddMorePizza = true;
 var selected = {};
 var pizzas = [];
@@ -10,7 +10,6 @@ init();
 function init() {
 	// Default settings
 	resetPizza();
-
 
 	showElement( "pStyle" );
 }
@@ -28,7 +27,7 @@ function completeOrder() {
 
 		canAddMorePizza = false;
 
-		// Create our XMLHttpRequest object
+	    // Create XMLHttpRequest object
 	    var hr = new XMLHttpRequest();
 	    // Create some variables we need to send to our PHP file
 	    var url = "http://localhost/PizzaOrder/php/orderAdded.php";
@@ -113,7 +112,7 @@ function resetPizza() {
 	setUniqueItem( "dough", "regular" );
 	setUniqueItem( "sauce", "romesco" );
 
-
+	// add cheddar option later?
 	setItem( "cheese", "mozzarella" );
 
 	doc["pizzaCounter"].innerHTML = pizzas.length;
